@@ -7,32 +7,31 @@ import {nanoid} from 'nanoid'
 function Button(props) {
     // Effects
     React.useEffect(() => {
+        function onKeyUp(event) {
+            const key = event.key
+            const sample = samples.find(item => item.key === key)
+            const path = `${process.env.PUBLIC_URL}/assets/library_${props.library}/${sample.src}`
+            const audio = new Audio(path)
+    
+            audio.play()
+            props.handleKeyPress(key)
+        }
+
         window.addEventListener('keyup', onKeyUp);
         return () => window.removeEventListener('keyup', onKeyUp);
     }, [props.library]);
 
     React.useEffect(() => {
+        function onKeyDown(event) {
+            if (event.repeat) {
+                return
+            }
+            props.handleKeyPress(event.key)
+        }
+
         window.addEventListener('keydown', onKeyDown)
         return () => window.removeEventListener('keydown', onKeyDown);
     }, [])
-
-    // Functions
-    function onKeyUp(event) {
-        const key = event.key
-        const sample = samples.find(item => item.key === key)
-        const path = `${process.env.PUBLIC_URL}/assets/library_${props.library}/${sample.src}`
-        const audio = new Audio(path)
-
-        audio.play()
-        props.handleKeyPress(key)
-    }
-
-    function onKeyDown(event) {
-        if (event.repeat) {
-            return
-        }
-        props.handleKeyPress(event.key)
-    }
 
     // Elements
     const buttons = samples.map(sample => {
