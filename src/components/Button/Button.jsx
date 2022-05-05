@@ -20,9 +20,8 @@ function Button(props) {
     function onKeyUp(event) {
         const key = event.key
         const sample = samples.find(item => item.key === key)
-        const audio = new Audio(
-            `/assets/library_${props.library}/${sample.src}`
-        )
+        const path = `${process.env.PUBLIC_URL}/assets/library_${props.library}/${sample.src}`
+        const audio = new Audio(path)
 
         audio.play()
         props.handleKeyPress(key)
@@ -32,18 +31,17 @@ function Button(props) {
         if (event.repeat) {
             return
         }
-
         props.handleKeyPress(event.key)
     }
 
     // Elements
     const buttons = samples.map(sample => {
-        const path = `/assets/library_${props.library}/${sample.src}`
+        const path = `${process.env.PUBLIC_URL}/assets/library_${props.library}/${sample.src}`
         const lightColors = ['palegoldenrod', 'aliceblue']
         const style = {'background': props.buttonColor,
             'color': (lightColors.includes(props.buttonColor) ? 'black' : 'white'),
         }
-
+        
         return(
             <button
                 key={nanoid()}
@@ -54,7 +52,7 @@ function Button(props) {
                 <div>
                     <img
                         className="btn-icon"
-                        src={`/assets/icons/${sample.icon}`}
+                        src={`${process.env.PUBLIC_URL}/assets/icons/${sample.icon}`}
                     />
                     <h3 className="btn-label">{sample.key.toUpperCase()}: {sample.id}</h3>
                 </div>
