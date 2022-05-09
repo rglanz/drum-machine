@@ -2,6 +2,8 @@
 
 Interactive drum machine built in React/HTML/CSS. Choose from one of three sample libraries and select custom colors for the interface.
 
+### [Play](https://rglanz.github.io/drum-machine)
+
 <img src="/images/thumbnail.png" width="600px" />
 
 Design, including the samples and icons, are my own. 
