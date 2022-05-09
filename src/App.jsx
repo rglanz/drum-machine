@@ -6,9 +6,9 @@ import ColorSelector from './components/ColorSelector/ColorSelector'
 function App() {
   // State
   const [library, setLibrary] = React.useState(1)
-  const [buttonColor, setButtonColor] = React.useState('firebrick')
   const [isPressed, setIsPressed] = React.useState(false)
   const [keyPressed, setKeyPressed] = React.useState('')
+  const [buttonColor, setButtonColor] = React.useState('firebrick')
 
   const numberOfLibraries = 3
 
@@ -23,13 +23,13 @@ function App() {
     })
   }
 
-  function changeButtonColor(color) {
-    setButtonColor(color)
-  }
-
   function handleKeyPress(key) {
     setIsPressed(prevIsPressed => !prevIsPressed)
     setKeyPressed(key)
+  }
+
+  function changeButtonColor(color) {
+    setButtonColor(color)
   }
 
   return (

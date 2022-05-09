@@ -28,9 +28,9 @@ function ColorSelector(props) {
     })
 
     return(
-        <div className="color-container">
+        <section className="color-container">
             {colorArray}
-        </div> 
+        </section> 
     )
 }
 

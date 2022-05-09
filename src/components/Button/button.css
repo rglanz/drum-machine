@@ -8,6 +8,7 @@
 .btn {
     width: 100px;
     height: 100px;
+    padding: 0.25rem;
 
     border-radius: 20px;
     color: white;
@@ -15,9 +16,9 @@
 }
 
 .btn-label {
-    margin-top: -0.5rem;
+    margin-top: -0.75rem;
     width: 100%;
-    font-size: .66rem;
+    font-size: .65rem;
 }
 
 .btn-icon {
@@ -29,6 +30,7 @@
 .btn-pressed {
     width: 100px;
     height: 100px;
+    padding: 0.25rem;
 
     border-radius: 20px;
     color: white;

@@ -17,14 +17,14 @@ function Library(props) {
       }, []);
 
     return(
-        <div className="library-text">
+        <section className="library-text">
             <button
                 className="library-btn"
                 onClick={props.changeLibrary}
             >
                 Library {props.library}
             </button>
-        </div>
+        </section>
     )
 }
 

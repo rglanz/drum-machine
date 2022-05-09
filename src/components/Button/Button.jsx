@@ -5,10 +5,15 @@ import {nanoid} from 'nanoid'
 
 
 function Button(props) {
+    const allowedKeys = ['q', 'w', 'e', 'a', 's', 'd', 'z', 'x', 'c']
+
     // Effects
     React.useEffect(() => {
-        function onKeyUp(event) {
-            const key = event.key
+        function onKeyUp({key}) {
+            if (!allowedKeys.includes(key)) {
+                return
+            }
+
             const sample = samples.find(item => item.key === key)
             const path = `${process.env.PUBLIC_URL}/assets/library_${props.library}/${sample.src}`
             const audio = new Audio(path)
@@ -22,11 +27,15 @@ function Button(props) {
     }, [props.library]);
 
     React.useEffect(() => {
-        function onKeyDown(event) {
-            if (event.repeat) {
+        function onKeyDown({key, repeat}) {
+            if (!allowedKeys.includes(key)) {
                 return
             }
-            props.handleKeyPress(event.key)
+            if (repeat) {
+                return
+            }
+
+            props.handleKeyPress(key)
         }
 
         window.addEventListener('keydown', onKeyDown)
@@ -48,21 +57,21 @@ function Button(props) {
                 onClick={() => (new Audio(path)).play()}
                 style={style}
             >
-                <div>
+                <section>
                     <img
                         className="btn-icon"
                         src={`${process.env.PUBLIC_URL}/assets/icons/${sample.icon}`}
                     />
                     <h3 className="btn-label">{sample.key.toUpperCase()}: {sample.id}</h3>
-                </div>
+                </section>
             </button>
         )
     })
 
     return(
-        <div className="btn-container">
+        <section className="btn-container">
             {buttons}
-        </div>
+        </section>
     )
 }
 
